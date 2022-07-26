@@ -1,1 +1,26 @@
 <p>error-page works!</p>
+
+<ul>
+    <li>
+        <a [routerLink]="['/auth/login']">Login</a>
+    </li>
+    <li>
+        <a [routerLink]="['/auth/registro']">Registro</a>
+    </li>
+    <hr>
+    <li>
+        <a [routerLink]="['/heroes/todoslosheroes']">Todos los heroes</a>
+    </li>
+    <li>
+        <a [routerLink]="['/heroes/agregarheroe']">Agregar heroe</a>
+    </li>
+    <li>
+        <a [routerLink]="['/heroes/editar/:id']">Editar heroe</a>
+    </li>
+    <li>
+        <a [routerLink]="['/heroes/buscarheroe']">Buscar heroe</a>
+    </li>
+    <li>
+        <a [routerLink]="['/heroes/:id']">Consultar heroe</a>
+    </li>
+</ul>

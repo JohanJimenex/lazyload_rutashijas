@@ -5,6 +5,7 @@ import { BuscarHeroeComponent } from './pages/buscar-heroe/buscar-heroe.componen
 import { ConsultarHeroeComponent } from './pages/consultar-heroe/consultar-heroe.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { TodosHeroesComponent } from './pages/todos-heroes/todos-heroes.component';
+import { HeroesRoutingModule } from './heroes-routing.module';
 
 
 
@@ -17,7 +18,8 @@ import { TodosHeroesComponent } from './pages/todos-heroes/todos-heroes.componen
     TodosHeroesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HeroesRoutingModule
   ]
 })
 export class HeroesModule { }

@@ -7,7 +7,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "",//cuando entre a mi ruta raiz de este archivo, como no tiene un path, lo redirecciona
     // path: "auth/",
     children: [
       {
@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'login'
+        redirectTo: 'registro'
       }
     ]
   }
@@ -31,7 +31,10 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes)//  solo tenemos un solo forRoot, y estas son rutas hijas
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class AuthRoutingModule { }
