@@ -35,7 +35,7 @@ const rutas: Route[] = [
       },
       {
         path: "**",
-        redirectTo: "inicio"
+        redirectTo: "todoslosheroes"
       }
     ]
   }
