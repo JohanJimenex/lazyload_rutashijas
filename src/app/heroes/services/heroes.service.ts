@@ -16,5 +16,9 @@ export class HeroesService {
     return this.http.get<Heroe[]>(this.urlBase + '/heroes');
   }
 
-  
+  consultarHeroe(id: string): Observable<Heroe> {
+    return this.http.get<Heroe>(`${this.urlBase}/heroes/${id}`);
+  }
+
+
 }

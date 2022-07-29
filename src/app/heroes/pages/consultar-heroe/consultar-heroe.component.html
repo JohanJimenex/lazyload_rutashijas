@@ -1,1 +1,33 @@
-<p>consultar-heroe works!</p>
+<h1 class="text-center">Más información</h1>
+<div *ngIf="heroe.superhero == '' ;else heroeInfo" class="d-flex justify-content-center mt-5 pt-5">
+    <mat-spinner></mat-spinner>
+</div>
+
+
+<ng-template #heroeInfo>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-5 col-md-1">
+            <img [src]="heroe | imagen" style="width: 7rem ;">
+        </div>
+
+        <div class="col-6 col-md-4">
+
+            <b>Nombre:</b> {{heroe.characters}} <br>
+            <b>Nombre de héroe:</b> {{heroe.superhero}} <br>
+
+            <br>
+
+            <b>Primera aparición: </b> {{heroe.first_appearance}} <br>
+            <b>Editora: </b> {{heroe.publisher}}
+        </div>
+    </div>
+
+</ng-template>
+
+<!-- Esto es del modulo ListGrid de grilla de angular material -->
+<!-- <mat-grid-list cols="1">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list> -->
