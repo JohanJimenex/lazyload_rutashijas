@@ -25,4 +25,18 @@ export class HeroesService {
     return this.http.get<Heroe[]>(`${this.urlBase}/heroes?q=${query}&_limit=5`);
   }
 
+  agregarHeroe(heroe: Heroe): Observable<Heroe> {
+    return this.http.post<Heroe>(`${this.urlBase}/heroes`, JSON.stringify(heroe),
+      {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+  }
+
+  editarHeroe(heroe: Heroe): Observable<Heroe> {
+    return this.http.put<Heroe>(`${this.urlBase}/heroes/${heroe.id}`, heroe);
+  }
+
+
 }

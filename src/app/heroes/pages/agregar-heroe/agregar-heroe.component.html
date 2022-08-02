@@ -1,12 +1,99 @@
-<h1 class="text-center my-4">Agregar-heroe works!</h1>
-
+<h1 class="text-center my-4">Agregar Héroe</h1>
 <mat-divider></mat-divider>
 
-<div class="row">
-    <div class="col-6">
-        <mat-form-field>
+<div class="col-sm-12 col-md-3 py-2 mx-auto">
 
-        </mat-form-field>
+    <div class="row d-flex justify-content-center p-3 my-2 bg-white rounded">
+
+        <div class="col-12 text-center">
+            <img
+                [src]="heroe | imagen"
+                class="rounded my-3"
+                style="width: 10rem;"
+            >
+        </div>
+
+        <div class="col-12">
+
+            <div class="row">
+
+                <mat-form-field class="col-sm-12 col-md-6">
+                    <mat-label>Nombre de Super Héroe</mat-label>
+                    <input
+                        type="text"
+                        [(ngModel)]="heroe.superhero"
+                        matInput
+                        required
+                    >
+                </mat-form-field>
+
+                <mat-form-field class=" col-sm-12 col-md-6">
+                    <mat-label>Nombre real</mat-label>
+                    <input
+                        type="text"
+                        [(ngModel)]="heroe.alter_ego"
+                        matInput
+                        required
+                    >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Primera aparición</mat-label>
+                    <input
+                        type="text"
+                        [(ngModel)]="heroe.first_appearance"
+                        matInput
+                        required
+                    >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Personajes</mat-label>
+                    <input
+                        type="text"
+                        [(ngModel)]="heroe.characters"
+                        matInput
+                        required
+                    >
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Editora</mat-label>
+
+                    <mat-select
+                        [(ngModel)]="heroe.publisher"
+                        required
+                    >
+                        <mat-option value="DC Comics">
+                            DC Comics
+                        </mat-option>
+                        <mat-option value="Marvel Comics">
+                            Marvel Comics
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+                 
+                <mat-form-field>
+                    <mat-label>URL de imagen</mat-label>
+                    <input
+                        type="url"
+                        matInput
+                        [(ngModel)]="heroe.alt_img"
+                        placeholder="ej: http://klk.com/image.jpg"
+                    >
+                </mat-form-field>
+
+            </div>
+            <button
+                class="w-100"
+                mat-flat-button
+                color="primary"
+                (click)="guardar()"
+            >Guardar
+            </button>
+        </div>
+
     </div>
-    <div class="col-6">e</div>
+
 </div>
