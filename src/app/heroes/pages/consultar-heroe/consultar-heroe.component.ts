@@ -37,10 +37,11 @@ export class ConsultarHeroeComponent implements OnInit {
       this.heroeServices.consultarHeroe(id).subscribe((resp: Heroe) => {
         this.heroe = resp;
       });
+      
     })
 
     //Otra forma con el pipe de RxJs SwitchMap
-    
+
     // this.activatedRouter.params
     //   .pipe(
     //     switchMap(({ id }) => this.heroeServices.consultarHeroe(id))
@@ -49,5 +50,14 @@ export class ConsultarHeroeComponent implements OnInit {
 
 
   }
+
+
+  //Otra forma desde el componente
+  // importamos Router e injectamos servicio
+  // constructos(private rutas: Router) { }
+
+  // Regresar(): void {
+  //   this.rutas.navigate(['/heroes/consultarheroes'])
+  // }
 
 }

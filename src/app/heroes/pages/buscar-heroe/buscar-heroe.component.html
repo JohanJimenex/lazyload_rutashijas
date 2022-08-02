@@ -1,1 +1,57 @@
-<p>buscar-heroe works!</p>
+<h1 class="text-center m-3">Buscar Héroe</h1>
+<mat-divider></mat-divider>
+
+<mat-form-field
+    class="d-flex justify-content-center mt-2"
+    appearance="fill"
+>
+    <!-- PlaceHolder animado -->
+    <mat-label>Buscar...</mat-label>
+    <input
+        type="text"
+        placeholder="Eje: Batman"
+        aria-label="Buscar"
+        matInput
+        [matAutocomplete]="auto"
+        [(ngModel)]="termino"
+        (input)="buscando()"
+    >
+
+    <mat-autocomplete #auto="matAutocomplete">
+        <!-- este atributo es de mat autocomplete otra fomr -->
+        <!-- (optionSelected)="opcionSeleccionada($event)"-->
+
+        <mat-option
+            (click)="heroe = item"
+            *ngFor="let item of arrHeroes"
+            [value]="item.superhero"
+        >
+            {{item.superhero}}
+        </mat-option>
+
+        <!-- Otra forma -->
+        <mat-option *ngIf="arrHeroes.length == 0 && termino.trim().length > 0">
+            No se encontraron resultado para '{{termino}}'
+        </mat-option>
+
+    </mat-autocomplete>
+
+</mat-form-field>
+
+<div
+    *ngIf="arrHeroes.length == 0 && termino.trim().length > 0"
+    style="width: 20rem;"
+    class="alert alert-warning text-center mx-auto"
+    role="alert"
+>
+    No se encontraron resultado para '{{termino}}'
+</div>
+
+<div class="d-flex justify-content-center">
+    <app-heroe-tarjeta
+        *ngIf="heroe != null"
+        [heroe]="heroe"
+    >
+    </app-heroe-tarjeta>
+
+</div>
