@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Heroe } from '../../interfaces/heroe';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -23,7 +23,8 @@ export class AgregarHeroeComponent implements OnInit {
       // if (id != ':id') {
       //   this.heroe.id = id
       // }
-      this.heroeServices.editarHeroe(id).subscribe(resp =>{
+      this.heroeServices.consultarHeroe(id).subscribe(resp => {
+        this.heroe = resp;
 
       })
     })
@@ -48,18 +49,35 @@ export class AgregarHeroeComponent implements OnInit {
       return;
     }
 
-    this.heroeServices.agregarHeroe(this.heroe).subscribe((resp: Heroe) => {
-      if (resp.superhero != undefined) {
-        this.mensaje = 'Usuario creado';
-      } else {
-        this.mensaje = 'Error al crear usuario'
-      }
+    if (this.heroe.id == undefined) {
 
-      this._snackBar.open(this.mensaje, 'Aceptar');
+      this.heroeServices.agregarHeroe(this.heroe).subscribe((resp: Heroe) => {
+        this.MensajeSnackBar();
+      });
 
-    });
+    } else {
+      this.heroeServices.editarHeroe(this.heroe).subscribe(resp => {
+        this.MensajeSnackBar()
+      })
+    }
+
+
   }
 
+  MensajeSnackBar() {
+
+    if (this.heroe.id == undefined) {
+      this.mensaje = 'Personaje creado';
+
+    } else if (this.heroe.id != undefined) {
+      this.mensaje = 'Personaje actualizado'
+    } else {
+      this.mensaje = 'Error al crear personaje'
+    }
+
+    this._snackBar.open(this.mensaje, 'Aceptar');
+
+  }
 
 
 

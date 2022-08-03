@@ -38,5 +38,8 @@ export class HeroesService {
     return this.http.put<Heroe>(`${this.urlBase}/heroes/${heroe.id}`, heroe);
   }
 
+  borrarHeroe(heroe: Heroe): Observable<Heroe> {
+    return this.http.delete<Heroe>(`${this.urlBase}/heroes/${heroe.id}`);
+  }
 
 }
