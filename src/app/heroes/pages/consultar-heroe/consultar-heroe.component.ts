@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Heroe } from '../../interfaces/heroe';
@@ -19,7 +20,9 @@ export class ConsultarHeroeComponent implements OnInit {
 
   constructor(
     private heroeServices: HeroesService,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+
   ) { }
 
   heroe: Heroe = {

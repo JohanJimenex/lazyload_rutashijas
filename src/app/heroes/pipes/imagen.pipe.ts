@@ -10,15 +10,16 @@ export class ImagenPipe implements PipeTransform {
 
   transform(heroe: Heroe): string {
 
-    if (heroe.id == undefined) {
+    if (heroe.alt_img == "") {
       this.urlImagen = 'assets/no-image.png';
+    }
 
-    } else if (heroe.alt_img != undefined) {
+    if (heroe.id != undefined && heroe.alt_img != '' && heroe.alt_img != undefined) {
       this.urlImagen = heroe.alt_img;
+    }
 
-    } else {
+    if (heroe.id != undefined && heroe.alt_img == undefined) {
       this.urlImagen = `assets/heroes/${heroe.id}.jpg`
-
     }
 
     return this.urlImagen;

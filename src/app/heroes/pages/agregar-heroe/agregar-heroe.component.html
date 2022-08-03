@@ -1,4 +1,9 @@
-<h1 class="text-center my-4">Agregar Héroe</h1>
+<h1 class="text-center my-4" *ngIf="heroe.id == undefined ;else editarTemplate" >Agregar Héroe</h1>
+
+<ng-template  #editarTemplate>
+    <h1  class="my-4 text-center">Editar</h1>
+</ng-template>
+
 <mat-divider></mat-divider>
 
 <div class="col-sm-12 col-md-3 py-2 mx-auto">
@@ -73,7 +78,7 @@
                     </mat-select>
 
                 </mat-form-field>
-                 
+
                 <mat-form-field>
                     <mat-label>URL de imagen</mat-label>
                     <input
@@ -91,6 +96,15 @@
                 color="primary"
                 (click)="guardar()"
             >Guardar
+            </button>
+
+            <button
+            *ngIf="heroe.id != undefined"
+                class="w-75 my-2"
+                mat-flat-button
+                color="warn"
+                (click)="borrar()"
+            >Borrar
             </button>
         </div>
 
