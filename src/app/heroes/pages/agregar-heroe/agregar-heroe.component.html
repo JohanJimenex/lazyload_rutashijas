@@ -1,7 +1,7 @@
-<h1 class="text-center my-4" *ngIf="heroe.id == undefined ;else editarTemplate" >Agregar Héroe</h1>
+<h1 class="text-center my-4" *ngIf="heroe.id == undefined ;else editarTemplate">Agregar Héroe</h1>
 
-<ng-template  #editarTemplate>
-    <h1  class="my-4 text-center">Editar</h1>
+<ng-template #editarTemplate>
+    <h1 class="my-4 text-center">Editar</h1>
 </ng-template>
 
 <mat-divider></mat-divider>
@@ -11,11 +11,7 @@
     <div class="row d-flex justify-content-center p-3 my-2 bg-white rounded">
 
         <div class="col-12 text-center">
-            <img
-                [src]="heroe | imagen"
-                class="rounded my-3"
-                style="width: 10rem;"
-            >
+            <img [src]="heroe | imagen" class="rounded my-3" style="width: 10rem;">
         </div>
 
         <div class="col-12">
@@ -24,51 +20,28 @@
 
                 <mat-form-field class="col-sm-12 col-md-6">
                     <mat-label>Nombre de Super Héroe</mat-label>
-                    <input
-                        type="text"
-                        [(ngModel)]="heroe.superhero"
-                        matInput
-                        required
-                    >
+                    <input type="text" [(ngModel)]="heroe.superhero" matInput required>
                 </mat-form-field>
 
                 <mat-form-field class=" col-sm-12 col-md-6">
                     <mat-label>Nombre real</mat-label>
-                    <input
-                        type="text"
-                        [(ngModel)]="heroe.alter_ego"
-                        matInput
-                        required
-                    >
+                    <input type="text" [(ngModel)]="heroe.alter_ego" matInput required>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Primera aparición</mat-label>
-                    <input
-                        type="text"
-                        [(ngModel)]="heroe.first_appearance"
-                        matInput
-                        required
-                    >
+                    <input type="text" [(ngModel)]="heroe.first_appearance" matInput required>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Personajes</mat-label>
-                    <input
-                        type="text"
-                        [(ngModel)]="heroe.characters"
-                        matInput
-                        required
-                    >
+                    <input type="text" [(ngModel)]="heroe.characters" matInput required>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Editora</mat-label>
 
-                    <mat-select
-                        [(ngModel)]="heroe.publisher"
-                        required
-                    >
+                    <mat-select [(ngModel)]="heroe.publisher" required>
                         <mat-option value="DC Comics">
                             DC Comics
                         </mat-option>
@@ -81,31 +54,18 @@
 
                 <mat-form-field>
                     <mat-label>URL de imagen</mat-label>
-                    <input
-                        type="url"
-                        matInput
-                        [(ngModel)]="heroe.alt_img"
-                        placeholder="ej: http://klk.com/image.jpg"
-                    >
+                    <input type="url" matInput [(ngModel)]="heroe.alt_img" placeholder="ej: http://klk.com/image.jpg">
                 </mat-form-field>
 
             </div>
-            <button
-                class="w-100"
-                mat-flat-button
-                color="primary"
-                (click)="guardar()"
-            >Guardar
+            <button class="w-100" mat-flat-button color="primary" (click)="guardar()">Guardar
             </button>
 
-            <button
-            *ngIf="heroe.id != undefined"
-                class="w-75 my-2"
-                mat-flat-button
-                color="warn"
-                (click)="borrar()"
-            >Borrar
-            </button>
+            <div class="text-center">
+                <button *ngIf="heroe.id != undefined" class="w-25 my-2" mat-flat-button color="warn"
+                    (click)="borrar()">Borrar
+                </button>
+            </div>
         </div>
 
     </div>
