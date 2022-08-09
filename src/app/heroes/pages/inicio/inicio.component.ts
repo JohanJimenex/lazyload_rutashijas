@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { IUsuario } from 'src/app/auth/interfaces/usuario.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html'
 })
-export class InicioComponent implements OnInit {
+export class InicioComponent {
 
-  constructor() { }
+  constructor(private rutas: Router, private authServices: AuthService) { }
 
-  ngOnInit(): void {
- 
+  get auth(): IUsuario {
+    return this.authServices.auth!;
   }
 
-}
+  logOut() {
+    this.rutas.navigate(['/auth'])
+  }
+
+} 

@@ -1,37 +1,24 @@
 <mat-sidenav-container fullscreen>
-
     <mat-toolbar color="primary">
         <button mat-icon-button (click)="sideNav.toggle()">
             <mat-icon> menu </mat-icon>
         </button>
-
         <span class="expandir"></span>
-
-        <button mat-button>
+        <span>{{auth.usuario}}</span>
+        <button mat-button (click)="logOut()">
             Logout
             <mat-icon class="customIconSize"> logout</mat-icon>
-
         </button>
     </mat-toolbar>
-
-
     <mat-sidenav #sideNav mode="push">
-
         <mat-toolbar color="primary">
-
             <span>Menú</span>
-
             <span class="expandir"></span>
-
             <button mat-icon-button (click)="sideNav.toggle()">
                 <mat-icon> keyboard_double_arrow_left</mat-icon>
             </button>
-
         </mat-toolbar>
-
-
         <mat-nav-list>
-
             <a mat-list-item routerLink="./todoslosheroes" (click)="sideNav.toggle()">
                 <mat-icon mat-list-icon>groups</mat-icon>
                 Todos los Héroes
@@ -44,17 +31,10 @@
                 <mat-icon mat-list-icon>search</mat-icon>
                 Buscar Héroe
             </a>
-
         </mat-nav-list>
-
     </mat-sidenav>
-
     <div class="container-fluid">
         <router-outlet></router-outlet>
     </div>
-
 </mat-sidenav-container>
-
-
-
 <!-- <router-outlet></router-outlet> -->

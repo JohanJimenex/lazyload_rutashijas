@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogConfirmComponent } from '../../components/dialog-confirm/dialog-confirm.component';
 import { Heroe } from '../../interfaces/heroe';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -15,6 +17,7 @@ export class AgregarHeroeComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
     private ruta: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class AgregarHeroeComponent implements OnInit {
 
   }
 
-  mensaje: string = '';
+  private mensaje: string = '';
 
   heroe: Heroe = {
     superhero: '',
@@ -54,6 +57,8 @@ export class AgregarHeroeComponent implements OnInit {
       return;
     }
 
+
+
     if (this.heroe.id == undefined) {
 
       this.heroeServices.agregarHeroe(this.heroe).subscribe((resp: Heroe) => {
@@ -67,10 +72,12 @@ export class AgregarHeroeComponent implements OnInit {
       })
     }
 
+    this.regresar();
+
 
   }
 
-  MensajeSnackBar(): void {
+  private MensajeSnackBar(): void {
 
     if (this.heroe.id == undefined) {
       this.mensaje = 'Personaje creado';
@@ -85,20 +92,35 @@ export class AgregarHeroeComponent implements OnInit {
       this.mensaje = 'Error al crear personaje'
     }
 
-    this._snackBar.open(this.mensaje, 'Aceptar');
+    this._snackBar.open(this.mensaje, 'Ok', {
+      duration: 2000
+    });
 
   }
 
   borrar(): void {
+
+    const dialogo = this.dialog.open(DialogConfirmComponent, {
+      width: '20rem',
+      data: { ...this.heroe }//con esto enviamos al componente hijo "dialogRef" una copia de heroe, se puede enviar el objeto original tambien
+    });
+
+    //despues de cerrar recibimos lo que sea que se haya mandado por .close('klk') desde el component dialog confirm
+    dialogo.afterClosed().subscribe((resp: any) => {
+      resp ? this.confirmarEliminacion() : false;
+    });
+  }
+
+  private confirmarEliminacion(): void {
+
     this.heroeServices.borrarHeroe(this.heroe).subscribe(resp => {
-      console.log(resp);
-      this._snackBar.open('Personaje eliminado', 'Aceptar');
-      this.ruta.navigate(['heroes/'])
-
-
+      this._snackBar.open('Personaje eliminado', 'Ok', { duration: 2000 });
+      this.regresar();
     })
   }
 
-
+  regresar(): void {
+    this.ruta.navigate(['heroes/'])
+  }
 
 }

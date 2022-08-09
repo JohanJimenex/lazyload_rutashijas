@@ -17,14 +17,10 @@
     </mat-card-content>
 
     <mat-card-actions class="d-flex justify-content-arround">
-        <span>
-            <!-- <button mat-flat-button color="primary" routerLink="/heroes/{{heroe.id}}">Leer más...</button> -->
-            <button mat-flat-button color="primary" [routerLink]="['/heroes', heroe.id ]">Leer más...</button>
-        </span>
+        <!-- <button mat-flat-button color="primary" routerLink="/heroes/{{heroe.id}}">Leer más...</button> -->
+        <button mat-flat-button color="primary" [routerLink]="['/heroes', heroe.id ]">Leer más...</button>
         <span class="expandir"></span>
-        <span>
-            <button mat-stroked-button color="warn" [routerLink]="['/heroes/editar', heroe.id]">Editar</button>
-        </span>
+        <button mat-stroked-button color="warn" [routerLink]="['/heroes/editar', heroe.id]">Editar</button>
     </mat-card-actions>
-    
+
 </mat-card>

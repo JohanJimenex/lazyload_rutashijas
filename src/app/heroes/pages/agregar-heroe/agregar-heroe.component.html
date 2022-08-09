@@ -1,8 +1,12 @@
-<h1 class="text-center my-4" *ngIf="heroe.id == undefined ;else editarTemplate">Agregar Héroe</h1>
+<!-- <h1 class="text-center my-4" *ngIf="heroe.id == undefined ;else editarTemplate">Agregar Héroe : {{heroe.superhero}}</h1>
 
 <ng-template #editarTemplate>
     <h1 class="my-4 text-center">Editar</h1>
-</ng-template>
+</ng-template> -->
+
+<h1 class="text-center mt-4">
+    {{heroe.id ? 'Agregar': 'Editar'}} Héroe
+</h1>
 
 <mat-divider></mat-divider>
 
@@ -12,6 +16,7 @@
 
         <div class="col-12 text-center">
             <img [src]="heroe | imagen" class="rounded my-3" style="width: 10rem;">
+            <h2>{{heroe.superhero}}</h2>
         </div>
 
         <div class="col-12">
@@ -58,12 +63,15 @@
                 </mat-form-field>
 
             </div>
-            <button class="w-100" mat-flat-button color="primary" (click)="guardar()">Guardar
+            <button class="w-100" mat-flat-button color="primary" (click)="guardar()">
+                {{heroe.id ? 'Actualizar':'Guardar'}}
             </button>
 
-            <div class="text-center">
-                <button *ngIf="heroe.id != undefined" class="w-25 my-2" mat-flat-button color="warn"
-                    (click)="borrar()">Borrar
+            <div class="d-flex my-2">
+                <button mat-stroked-button (click)="regresar()">Cancelar
+                </button>
+                <span class="expandir"></span>
+                <button *ngIf="heroe.id != undefined" mat-stroked-button color="warn" (click)="borrar()">Borrar
                 </button>
             </div>
         </div>
