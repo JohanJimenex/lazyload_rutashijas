@@ -16,6 +16,7 @@ export class InicioComponent {
   }
 
   logOut() {
+    this.authServices.cerrarSesion();
     this.rutas.navigate(['/auth'])
   }
 

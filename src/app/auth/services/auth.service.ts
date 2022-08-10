@@ -15,23 +15,29 @@ export class AuthService {
 
   private _auth: IUsuario | undefined;
 
-  get auth(): IUsuario | undefined {
-    return this._auth;
-  }
-
-  //otra forma para desestructurar el objeto compelto para crear una copia
-  // get auth(){
-  //   return {...this._auth};
+  // get auth(): IUsuario | undefined {
+  //   return this._auth;
   // }
+
+  // otra forma para desestructurar el objeto compelto para crear una copia
+  get auth(): IUsuario {
+    return { ...this._auth! };
+  }
 
 
   iniciarSesion(): Observable<IUsuario> {
     return this.http.get<IUsuario>(`${this.urlBase}/usuarios/1`)
       .pipe(
         tap((resp: IUsuario) => {
+          console.log(resp);
+
           this._auth = resp;
         })
       );
+  }
+
+  cerrarSesion() {
+    this._auth = undefined;
   }
 
 
