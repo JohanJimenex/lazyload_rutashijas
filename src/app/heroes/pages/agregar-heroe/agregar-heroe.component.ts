@@ -24,13 +24,12 @@ export class AgregarHeroeComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(({ id }) => {
 
-      // if (id != ':id') {
-      //   this.heroe.id = id
-      // }
-      this.heroeServices.consultarHeroe(id).subscribe(resp => {
-        this.heroe = resp;
+      if (id != undefined) {
+        this.heroeServices.consultarHeroe(id).subscribe(resp => {
+          this.heroe = resp;
+        })
+      }
 
-      })
     })
 
   }

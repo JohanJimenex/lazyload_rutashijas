@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUsuario } from '../interfaces/usuario.interface';
 
@@ -9,7 +9,8 @@ import { IUsuario } from '../interfaces/usuario.interface';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   private urlBase: string = environment.urlBase;
 
@@ -24,12 +25,13 @@ export class AuthService {
     return { ...this._auth! };
   }
 
-
   iniciarSesion(): Observable<IUsuario> {
     return this.http.get<IUsuario>(`${this.urlBase}/usuarios/1`)
       .pipe(
         tap((resp: IUsuario) => {
-          console.log(resp);
+          console.log('desde el iniciar sesion');
+
+          localStorage.setItem('token', resp.id.toString());
 
           this._auth = resp;
         })
@@ -38,7 +40,24 @@ export class AuthService {
 
   cerrarSesion() {
     this._auth = undefined;
+    localStorage.clear();
   }
 
+  //puede devolver un observable o un booleano, con of()
+  yaEstaAutenticado(): Observable<boolean> | boolean {
+
+    if (!localStorage.getItem('token')) {
+      return false;
+      // return of(false);
+    }
+    //el .pipe( map() ) sirve para trasnformar lo que sea que recibe en un nuevo valor
+
+    this.iniciarSesion().subscribe();
+
+    return true;
+
+
+    // return of(true);
+  }
 
 }

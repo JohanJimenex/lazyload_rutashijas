@@ -15,7 +15,7 @@ const routes: Routes = [
     //canLoad recibe una lista de Guards que pasaran primero a pedir los permisos 
     //solo impide que se carggue la ruta, una vez cargada no tiene poder aunque cierre
     //seion
-    canLoad: [AuthGuard],
+    // canLoad: [AuthGuard],
     //este revisa que este atenticado siempre que cambie la pagina
     canActivate:[AuthGuard]
   },
